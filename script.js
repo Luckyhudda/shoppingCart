@@ -1,10 +1,11 @@
 const url = 'https://fakestoreapi.com/products';
-const cardBox = document.querySelector('.containerCards')
+const cardBox = document.querySelector('.containerCards');
+const cartSection = document.querySelector(".cartSection");
+const cartBtn = document.querySelector(".cartBtn");
 
 
 function displayData(data){
-    data.forEach((item)=>{
-        console.log(item);
+    data.forEach((item,i)=>{
         let card = document.createElement('div');
         card.classList.add('card')
         let image = document.createElement('img');
@@ -24,7 +25,14 @@ function displayData(data){
         div.append(price,addCart)
         card.append(image,title,div);
       
-        cardBox.append(card)
+        cardBox.append(card);
+
+        let finalCart = [];
+       addCart.addEventListener('click',function(){
+        let products = item;
+            finalCart.push(products);
+            localStorage.setItem('product',JSON.stringify(finalCart));
+       })
     })
 }
 
@@ -33,7 +41,7 @@ function displayData(data){
 async function getData(){
     try{
         let data = await fetch(url);
-        let finalData = await data.json()
+        let finalData = await data.json();
         displayData(finalData)
     }catch{
         return `Something Wrong`
