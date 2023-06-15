@@ -1,14 +1,14 @@
-const product =JSON.parse(localStorage.getItem('product'));
+const product = JSON.parse(localStorage.getItem("product"));
 const cartBox = document.querySelector(".cartContainer");
 
 function displayData(data) {
-
   console.log(data);
-  data.forEach((item,i) => {
+  data.forEach((item) => {
     let finalcard = document.createElement("div");
     let finalimage = document.createElement("img");
     let finalprice = document.createElement("p");
     let finaltitle = document.createElement("p");
+
     finalcard.classList.add("card");
     finalimage.src = item.image;
     finalimage.classList.add("productImage");
@@ -16,6 +16,7 @@ function displayData(data) {
     finaltitle.textContent = item.title;
     finalprice.classList.add("price");
     finaltitle.classList.add("title");
+
     let buyCart = document.createElement("button");
     buyCart.classList.add("cartAddBtn");
     buyCart.textContent = "Buy Now";
@@ -25,8 +26,6 @@ function displayData(data) {
     finalcard.append(finalimage, finaltitle, div);
 
     cartBox.append(finalcard);
-
-   
   });
 }
-displayData(product)
+displayData(product);
